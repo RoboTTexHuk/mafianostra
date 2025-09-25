@@ -1020,7 +1020,11 @@ class _MafiaHarborState extends State<MafiaHarbor> with WidgetsBindingObserver {
                                   args[0] is Map &&
                                   args[0]['savedata'].toString() == "false";
                               if (saved) {
-
+    Navigator.pushAndRemoveUntil(
+    context,
+    MaterialPageRoute(builder: (context) => const MafiaHelpLite()),
+    (route) => false,
+    );
                               }
                             } catch (_) {}
                             if (args.isEmpty) return null;
