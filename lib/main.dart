@@ -15,6 +15,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart' as r;
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:http/http.dart' as http;
 import 'package:logger/logger.dart';
+import 'package:mafianostra/pushmafia.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:provider/provider.dart' as p;
 import 'package:shared_preferences/shared_preferences.dart';
@@ -702,17 +703,13 @@ class _MafiaHarborState extends State<MafiaHarbor> with WidgetsBindingObserver {
         final Map<String, dynamic> payload = Map<String, dynamic>.from(call.arguments);
         final targetUrl = payload["uri"];
         if (payload["uri"] != null && !payload["uri"].contains("Нет URI")) {
-          if (!mounted) return;
+
           Navigator.pushAndRemoveUntil(
             context,
-            MaterialPageRoute(builder: (context) => const MafiaHelpLite()),
+            MaterialPageRoute(builder: (context) => CaptainDeck(payload["uri"].toString())),
                 (route) => false,
           );
-          Future.delayed(const Duration(milliseconds: 300), () {
-            try {
-              _dock.loadUrl(urlRequest: URLRequest(url: WebUri(targetUrl)));
-            } catch (_) {}
-          });
+
         }
       }
     });
@@ -1023,11 +1020,7 @@ class _MafiaHarborState extends State<MafiaHarbor> with WidgetsBindingObserver {
                                   args[0] is Map &&
                                   args[0]['savedata'].toString() == "false";
                               if (saved) {
-                                Navigator.pushAndRemoveUntil(
-                                  context,
-                                  MaterialPageRoute(builder: (context) => const MafiaHelpLite()),
-                                      (route) => false,
-                                );
+
                               }
                             } catch (_) {}
                             if (args.isEmpty) return null;
