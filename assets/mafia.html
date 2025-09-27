@@ -1,8 +1,11 @@
-<!DOCTYPE html><html lang="en"><head><meta name="x-poe-datastore-behavior" content="local_only"><meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' 'unsafe-eval' data: blob: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://code.jquery.com https://unpkg.com https://d3js.org https://threejs.org https://cdn.plot.ly https://stackpath.bootstrapcdn.com https://maps.googleapis.com https://cdn.tailwindcss.com https://ajax.googleapis.com https://kit.fontawesome.com https://cdn.datatables.net https://maxcdn.bootstrapcdn.com https://code.highcharts.com https://tako-static-assets-production.s3.amazonaws.com https://www.youtube.com https://fonts.googleapis.com https://fonts.gstatic.com https://pfst.cf2.poecdn.net https://puc.poecdn.net https://i.imgur.com https://wikimedia.org https://*.icons8.com https://*.giphy.com https://picsum.photos https://images.unsplash.com; frame-src 'self' https://www.youtube.com https://trytako.com; child-src 'self'; manifest-src 'self'; worker-src 'self'; upgrade-insecure-requests; block-all-mixed-content;">
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="x-poe-datastore-behavior" content="local_only" />
   <title>Mafia Nostra Clubbook</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
@@ -11,31 +14,23 @@
         container: { center: true, padding: { DEFAULT: '1rem', md: '1.25rem', lg: '1.5rem' } },
         extend: {
           colors: {
-            "brand-black": "#121212",
-            "brand-gray": "#1E1E1E",
-            "brand-gold": { "light": "#FDE08D", "DEFAULT": "#DF9B2D", "dark": "#AB7A22" },
-            "brand-text": "#E0E0E0",
-            "brand-text-muted": "#9A9A9A"
+            'brand-black': '#121212',
+            'brand-gray': '#1E1E1E',
+            'brand-gold': { light: '#FDE08D', DEFAULT: '#DF9B2D', dark: '#AB7A22' },
+            'brand-text': '#E0E0E0',
+            'brand-text-muted': '#9A9A9A'
           },
-          maxWidth: {
-            'phone': '480px',
-            'tablet': '1024px',
-            'wide': '1280px'
-          },
-          screens: {
-            xs: '380px',
-            ipad: '768px',
-            ipadl: '1024px'
-          }
+          maxWidth: { phone: '480px', tablet: '1024px', wide: '1280px' },
+          screens: { xs: '380px', ipad: '768px', ipadl: '1024px' }
         }
       }
     };
   </script>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800;900&amp;family=Cinzel:wght@600;700&amp;display=swap">
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800;900&family=Cinzel:wght@600;700&display=swap" />
   <style>
     :root { color-scheme: dark; }
-    body { font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial; }
+    body { font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial; }
     .font-cinzel { font-family: 'Cinzel', serif; }
 
     .gold-gradient-text {
@@ -46,7 +41,6 @@
     .gold-gradient-bg { background: linear-gradient(180deg, #FDE08D 0%, #DF9B2D 100%); }
     .tab-active { color: #FDE08D !important; border-bottom-color: #DF9B2D !important; }
 
-    /* Inputs consistent, with safe icon layer that never overlaps text */
     .input {
       width: 100%;
       background-color: #1E1E1E;
@@ -57,9 +51,7 @@
       outline: none;
       transition: box-shadow .15s ease, border-color .15s ease, background-color .15s ease;
       box-shadow: inset 0 1px 0 rgba(255,255,255,0.04);
-      appearance: none; /* prevent native arrows from breaking layout */
-      -webkit-appearance: none;
-      -moz-appearance: none;
+      appearance: none;
     }
     .input::placeholder { color: #9A9A9A; }
     .input:focus {
@@ -68,7 +60,6 @@
       background-color: #1C1C1C;
     }
 
-    /* Icon wrapper uses a separate absolute span; we reserve padding with input-with-icon */
     .icon-left {
       position: absolute; inset-inline-start: 0.7rem; top: 50%; transform: translateY(-50%);
       color: #C9AE78; font-size: 0.95rem; pointer-events: none; line-height: 1;
@@ -78,16 +69,13 @@
     }
     .input-with-icon { padding-inline-start: 2.6rem; }
 
-    /* Right caret for selects (custom), ensures no overlay */
     .select-wrap { position: relative; }
     .select-wrap::after {
-      content: "▾";
+      content: '▾';
       position: absolute; inset-inline-end: 0.7rem; top: 50%; transform: translateY(-50%);
       color: #C9AE78; font-size: 0.9rem; pointer-events: none;
-      background: transparent;
     }
 
-    /* Buttons */
     .btn-gold {
       background: #DF9B2D; color: #121212; font-weight: 700;
       padding: 0.6rem 1rem; border-radius: 0.75rem; font-size: 0.9rem;
@@ -98,32 +86,23 @@
     .btn-ghost {
       background: #1E1E1E; border: 1px solid rgba(223,155,45,0.35);
       color: #E0E0E0; padding: 0.6rem 1rem; border-radius: 0.75rem; font-size: 0.9rem;
-      white-space: nowrap; transition: border-color .15s ease, filter .15s ease;
+      transition: border-color .15s ease, filter .15s ease; white-space: nowrap;
     }
     .btn-ghost:hover { border-color: #DF9B2D; filter: brightness(1.03); }
 
-    .safe-pad {
-      padding-top: max(env(safe-area-inset-top), 0);
-      padding-bottom: max(env(safe-area-inset-bottom), 0);
-    }
+    .safe-pad { padding-top: max(env(safe-area-inset-top), 0); padding-bottom: max(env(safe-area-inset-bottom), 0); }
 
     ::-webkit-scrollbar { display: none; }
     html, body { -ms-overflow-style: none; scrollbar-width: none; }
 
-    /* Full-bleed layout rails and content width */
     .rail {
       min-height: 100svh;
       display: grid;
-      grid-template-columns: 1fr min(100%, 960px) 1fr; /* center column wide enough for iPad */
+      grid-template-columns: 1fr min(100%, 960px) 1fr;
     }
     .rail > * { grid-column: 2; }
 
-    /* Cards hover for trackpads */
-    @media (hover:hover) {
-      .card:hover { border-color: rgba(223,155,45,0.6); }
-    }
-
-    /* Dense grid on very wide tablets/desktops for members */
+    @media (hover:hover) { .card:hover { border-color: rgba(223,155,45,0.6); } }
     @media (min-width: 1024px) {
       #members-list.grid-dense {
         display: grid;
@@ -132,10 +111,9 @@
       }
     }
   </style>
-  <script src="https://puc.poecdn.net/authenticated_preview_page/syncedState.bd4eeeb8e8e02052ee92.js"></script></head>
+</head>
 <body class="bg-brand-black text-brand-text safe-pad">
 <div id="app" class="rail">
-
   <!-- Header -->
   <header class="w-full bg-brand-gray/50 backdrop-blur-sm sticky top-0 z-50 border-b border-brand-gold/20">
     <div class="px-4 md:px-6 py-3 flex items-center justify-between">
@@ -143,11 +121,8 @@
         <div class="w-8 h-8 rounded-md border border-brand-gold/40 flex items-center justify-center text-brand-gold text-base">≡</div>
         <h1 class="font-cinzel text-xl md:text-2xl tracking-wider gold-gradient-text font-bold">MAFIA NOSTRA</h1>
       </div>
-      <!-- Right spacer -->
       <div style="width:2rem;height:2rem"></div>
     </div>
-
-    <!-- Tabs -->
     <nav class="bg-brand-gray">
       <div class="flex overflow-x-auto px-2 md:px-6">
         <button onclick="changeTab(0)" class="tab-button py-3 px-4 text-xs xs:text-sm md:text-sm font-bold border-b-2 border-transparent text-brand-text-muted hover:text-brand-gold tab-active">CRM</button>
@@ -158,22 +133,18 @@
     </nav>
   </header>
 
-  <!-- Main -->
   <main class="w-full px-4 md:px-6 pb-28 pt-4">
-
     <!-- CRM -->
     <section id="crm-tab" class="tab-panel space-y-4">
-      <!-- Search -->
       <div class="relative">
         <span class="icon-left" aria-hidden="true">🔎</span>
-        <input id="member-search" type="text" placeholder="Search members..." class="input input-with-icon">
+        <input id="member-search" type="text" placeholder="Search members..." class="input input-with-icon" />
         <div class="flex items-center gap-2 mt-3 flex-wrap">
           <button class="btn-gold" onclick="openMemberModal()">+ Add Member</button>
-          <button class="btn-ghost" onclick="exportMembersCSV()">Export CSV</button>
+
         </div>
       </div>
 
-      <!-- Filters (icons will never overlap thanks to reserved padding and custom caret) -->
       <div class="grid grid-cols-1 xs:grid-cols-3 gap-2">
         <div class="relative select-wrap">
           <span class="icon-left" aria-hidden="true">👤</span>
@@ -202,7 +173,6 @@
         </div>
       </div>
 
-      <!-- Members -->
       <div id="members-list" class="space-y-3 ipadl:grid-dense"></div>
     </section>
 
@@ -235,11 +205,11 @@
         <div class="grid grid-cols-1 xs:grid-cols-2 gap-3">
           <div class="relative">
             <span class="icon-left" aria-hidden="true">🏷️</span>
-            <input id="tx-title" class="input input-with-icon" placeholder="Title e.g. Venue Rental">
+            <input id="tx-title" class="input input-with-icon" placeholder="Title e.g. Venue Rental" />
           </div>
           <div class="relative">
             <span class="icon-left" aria-hidden="true">$</span>
-            <input id="tx-amount" type="number" step="0.01" class="input input-with-icon" placeholder="Amount e.g. 15000">
+            <input id="tx-amount" type="number" step="0.01" class="input input-with-icon" placeholder="Amount e.g. 15000" />
           </div>
           <div class="relative select-wrap">
             <span class="icon-left" aria-hidden="true">↔️</span>
@@ -250,7 +220,7 @@
           </div>
           <div class="relative">
             <span class="icon-left" aria-hidden="true">📅</span>
-            <input id="tx-date" type="date" class="input input-with-icon">
+            <input id="tx-date" type="date" class="input input-with-icon" />
           </div>
         </div>
         <button class="btn-gold" onclick="addTransaction()">+ Add</button>
@@ -268,24 +238,24 @@
         <h3 class="font-cinzel text-lg gold-gradient-text">Create Look</h3>
         <div class="relative">
           <span class="icon-left" aria-hidden="true">✍️</span>
-          <input id="look-title" class="input input-with-icon" placeholder="Look name e.g. The Don's Attire">
+          <input id="look-title" class="input input-with-icon" placeholder="Look name e.g. The Don's Attire" />
         </div>
         <div class="relative">
           <span class="icon-left" aria-hidden="true">📝</span>
           <textarea id="look-notes" rows="3" class="input input-with-icon" placeholder="Notes: occasion, season, tips"></textarea>
         </div>
         <div class="grid grid-cols-2 gap-2">
-          <div class="relative"><span class="icon-left" aria-hidden="true">▪️</span><input id="look-item-1" class="input input-with-icon" placeholder="Item 1 e.g. Pinstripe Suit"></div>
-          <div class="relative"><span class="icon-left" aria-hidden="true">▪️</span><input id="look-item-2" class="input input-with-icon" placeholder="Item 2 e.g. Fedora"></div>
-          <div class="relative"><span class="icon-left" aria-hidden="true">▪️</span><input id="look-item-3" class="input input-with-icon" placeholder="Item 3 e.g. Oxford Shoes"></div>
-          <div class="relative"><span class="icon-left" aria-hidden="true">▪️</span><input id="look-item-4" class="input input-with-icon" placeholder="Item 4 e.g. Pocket Square"></div>
+          <div class="relative"><span class="icon-left" aria-hidden="true">▪️</span><input id="look-item-1" class="input input-with-icon" placeholder="Item 1 e.g. Pinstripe Suit" /></div>
+          <div class="relative"><span class="icon-left" aria-hidden="true">▪️</span><input id="look-item-2" class="input input-with-icon" placeholder="Item 2 e.g. Fedora" /></div>
+          <div class="relative"><span class="icon-left" aria-hidden="true">▪️</span><input id="look-item-3" class="input input-with-icon" placeholder="Item 3 e.g. Oxford Shoes" /></div>
+          <div class="relative"><span class="icon-left" aria-hidden="true">▪️</span><input id="look-item-4" class="input input-with-icon" placeholder="Item 4 e.g. Pocket Square" /></div>
         </div>
         <button class="btn-gold" onclick="addLook()">+ Add Look</button>
       </div>
 
       <div id="preset-looks" class="space-y-4">
         <div class="bg-brand-gray rounded-xl overflow-hidden border border-brand-gold/30">
-          <img class="h-40 w-full object-cover" src="https://storage.googleapis.com/uxpilot-auth.appspot.com/f35626d113-11687626d1f337e3fff6.png" alt="Don look">
+          <img class="h-40 w-full object-cover" src="https://storage.googleapis.com/uxpilot-auth.appspot.com/f35626d113-11687626d1f337e3fff6.png" alt="Don look" />
           <div class="p-4">
             <h3 class="font-cinzel text-lg font-bold text-white">The Don's Attire</h3>
             <p class="text-sm text-brand-text-muted mb-3">Essential for formal gatherings.</p>
@@ -298,7 +268,7 @@
           </div>
         </div>
         <div class="bg-brand-gray rounded-xl overflow-hidden border border-brand-gold/30">
-          <img class="h-40 w-full object-cover" src="https://storage.googleapis.com/uxpilot-auth.appspot.com/62eea342d6-e93758d96a24d26670b1.png" alt="Associate casual">
+          <img class="h-40 w-full object-cover" src="https://storage.googleapis.com/uxpilot-auth.appspot.com/62eea342d6-e93758d96a24d26670b1.png" alt="Associate casual" />
           <div class="p-4">
             <h3 class="font-cinzel text-lg font-bold text-white">The Associate's Casual</h3>
             <p class="text-sm text-brand-text-muted mb-3">For day-to-day business.</p>
@@ -321,9 +291,9 @@
 
       <div class="bg-brand-gray p-4 rounded-xl border border-brand-gold/30 space-y-3">
         <h3 class="font-cinzel text-lg gold-gradient-text">Add Vendor</h3>
-        <div class="relative"><span class="icon-left" aria-hidden="true">🏪</span><input id="vendor-name" class="input input-with-icon" placeholder="Vendor name e.g. Giovanni's Fine Tailoring"></div>
-        <div class="relative"><span class="icon-left" aria-hidden="true">🧵</span><input id="vendor-service" class="input input-with-icon" placeholder="Services e.g. Bespoke Suits &amp; Alterations"></div>
-        <div class="relative"><span class="icon-left" aria-hidden="true">🔗</span><input id="vendor-link" class="input input-with-icon" placeholder="Website or contact link (optional)"></div>
+        <div class="relative"><span class="icon-left" aria-hidden="true">🏪</span><input id="vendor-name" class="input input-with-icon" placeholder="Vendor name e.g. Giovanni's Fine Tailoring" /></div>
+        <div class="relative"><span class="icon-left" aria-hidden="true">🧵</span><input id="vendor-service" class="input input-with-icon" placeholder="Services e.g. Bespoke Suits &amp; Alterations" /></div>
+        <div class="relative"><span class="icon-left" aria-hidden="true">🔗</span><input id="vendor-link" class="input input-with-icon" placeholder="Website or contact link (optional)" /></div>
         <button class="btn-gold" onclick="addVendor()">+ Add Vendor</button>
       </div>
 
@@ -332,8 +302,8 @@
           <div class="w-20 h-20 rounded-lg bg-brand-black/40 flex items-center justify-center text-brand-gold text-2xl">✂️</div>
           <div class="flex-1">
             <h3 class="font-bold text-white">Giovanni's Fine Tailoring</h3>
-            <p class="text-sm text-brand-text-muted">Bespoke Suits &amp; Alterations</p>
-            <span class="text-xs text-brand-gold hover:underline cursor-pointer" onclick="openVendor('Giovanni\'s Fine Tailoring')">View Services →</span>
+            <p class="text-sm text-brand-text-muted">Bespoke Suits &amp; Restoration</p>
+            <span class="text-xs text-brand-gold hover:underline cursor-pointer" onclick="openVendor('Giovanni&#39;s Fine Tailoring')">View Services →</span>
           </div>
         </div>
         <div class="flex items-center bg-brand-gray p-3 rounded-lg border border-brand-gold/30 space-x-4">
@@ -356,25 +326,25 @@
         <button class="text-brand-text-muted hover:text-brand-gold" onclick="closeMemberModal()">✕</button>
       </div>
       <div class="space-y-3">
-        <div class="relative"><span class="icon-left" aria-hidden="true">🪪</span><input id="m-name" class="input input-with-icon" placeholder="Full name"></div>
-        <div class="relative select-wrap"><span class="icon-left" aria-hidden="true">♔</span>
+        <div class="relative"><span class="icon-left">🪪</span><input id="m-name" class="input input-with-icon" placeholder="Full name" /></div>
+        <div class="relative select-wrap"><span class="icon-left">♔</span>
           <select id="m-role" class="input input-with-icon">
             <option value="DON">Don</option>
             <option value="CONSIGLIERE">Consigliere</option>
             <option value="ASSOCIATO">Associato</option>
           </select>
         </div>
-        <div class="relative select-wrap"><span class="icon-left" aria-hidden="true">💵</span>
+        <div class="relative select-wrap"><span class="icon-left">💵</span>
           <select id="m-dues" class="input input-with-icon">
             <option value="Paid">Dues: Paid</option>
             <option value="Overdue">Dues: Overdue</option>
           </select>
         </div>
         <div class="grid grid-cols-2 gap-2">
-          <div class="relative"><span class="icon-left" aria-hidden="true">✅</span><input id="m-att" type="number" min="0" max="100" class="input input-with-icon" placeholder="Attendance %"></div>
-          <div class="relative"><span class="icon-left" aria-hidden="true">⭐</span><input id="m-loy" type="number" min="0" max="5" class="input input-with-icon" placeholder="Loyalty 0-5"></div>
+          <div class="relative"><span class="icon-left">✅</span><input id="m-att" type="number" min="0" max="100" class="input input-with-icon" placeholder="Attendance %" /></div>
+          <div class="relative"><span class="icon-left">⭐</span><input id="m-loy" type="number" min="0" max="5" class="input input-with-icon" placeholder="Loyalty 0-5" /></div>
         </div>
-        <div class="relative"><span class="icon-left" aria-hidden="true">🖼️</span><input id="m-avatar" class="input input-with-icon" placeholder="Avatar URL (optional)"></div>
+        <div class="relative"><span class="icon-left">🖼️</span><input id="m-avatar" class="input input-with-icon" placeholder="Avatar URL (optional)" /></div>
       </div>
       <div class="flex justify-between items-center mt-4">
         <button class="btn-ghost" onclick="deleteMember()">Delete</button>
@@ -384,19 +354,17 @@
   </div>
 
   <!-- Toast -->
-  <div id="toast" class="fixed bottom-4 left-1/2 -translate-x-1/2 bg-brand-gray border border-brand-gold/30 text-brand-text px-4 py-2 rounded-lg hidden z-50"></div>
+  <div id="toast" class="fixed bottom-4 left-1/2 -translate-x-1/2 bg-brand-gray border border-brand-gold/30 text-brand-text px-4 py-2 rounded-lg hidden z-40"></div>
 </div>
 
 <script>
-  // SafeStorage to avoid sandbox localStorage errors
+  // SafeStorage
   const SafeStorage = (() => {
     let memoryStore = {};
-    const hasLocal = (() => {
-      try { const k='__t'+Math.random(); localStorage.setItem(k,'1'); localStorage.removeItem(k); return true; } catch(e){ return false; }
-    })();
-    function getItem(k){ return hasLocal ? localStorage.getItem(k) : (Object.prototype.hasOwnProperty.call(memoryStore,k)? memoryStore[k] : null); }
-    function setItem(k,v){ return hasLocal ? localStorage.setItem(k,v) : (memoryStore[k]=v); }
-    function removeItem(k){ return hasLocal ? localStorage.removeItem(k) : delete memoryStore[k]; }
+    const hasLocal = (() => { try { const k='__t'+Math.random(); localStorage.setItem(k,'1'); localStorage.removeItem(k); return true; } catch(e){ return false; } })();
+    const getItem=(k)=> hasLocal? localStorage.getItem(k) : (Object.prototype.hasOwnProperty.call(memoryStore,k)? memoryStore[k] : null);
+    const setItem=(k,v)=> hasLocal? localStorage.setItem(k,v) : (memoryStore[k]=v);
+    const removeItem=(k)=> hasLocal? localStorage.removeItem(k) : delete memoryStore[k];
     return { getItem, setItem, removeItem, hasLocal };
   })();
 
@@ -412,10 +380,10 @@
   if (!Number.isNaN(savedTab)) setTimeout(()=>changeTab(savedTab), 0);
 
   // Toast
-  function showToast(msg){
+  function showToast(msg, holdMs=2200){
     const t=document.getElementById('toast');
     t.textContent=msg; t.classList.remove('hidden');
-    clearTimeout(showToast._t); showToast._t=setTimeout(()=>t.classList.add('hidden'),2200);
+    clearTimeout(showToast._t); showToast._t=setTimeout(()=>t.classList.add('hidden'),holdMs);
   }
 
   // CRM
@@ -448,11 +416,11 @@
     membersListEl.innerHTML = arr.map(m=>`
       <div class="card bg-brand-gray p-4 rounded-xl border ${m.role==='DON'?'border-brand-gold/50 shadow-lg shadow-brand-gold/10':'border-brand-gold/30'}">
         <div class="flex items-center gap-4">
-          <img src="${m.avatar || 'https://storage.googleapis.com/uxpilot-auth.appspot.com/avatars/avatar-2.jpg'}" class="w-16 h-16 rounded-full border-2 ${m.role==='DON'?'border-brand-gold':'border-brand-gold-dark'}" alt="${m.name}">
+          <img src="${m.avatar || 'https://storage.googleapis.com/uxpilot-auth.appspot.com/avatars/avatar-2.jpg'}" class="w-16 h-16 rounded-full border-2 ${m.role==='DON'?'border-brand-gold':'border-brand-gold-dark'}" alt="${escapeHTML(m.name)}" />
           <div class="flex-1 min-w-0">
-            <h3 class="text-base md:text-lg font-bold text-white truncate">${m.name}</h3>
-            <p class="font-cinzel text-xs md:text-sm ${m.role==='DON'?'gold-gradient-text font-semibold':'text-brand-gold'}">${m.role}</p>
-            <p class="text-[11px] md:text-xs text-brand-text-muted mt-0.5">Dues: <span class="${m.dues==='Paid'?'text-green-400':'text-red-500'} font-semibold">${m.dues}</span></p>
+            <h3 class="text-base md:text-lg font-bold text-white truncate">${escapeHTML(m.name)}</h3>
+            <p class="font-cinzel text-xs md:text-sm ${m.role==='DON'?'gold-gradient-text font-semibold':'text-brand-gold'}">${escapeHTML(m.role)}</p>
+            <p class="text-[11px] md:text-xs text-brand-text-muted mt-0.5">Dues: <span class="${m.dues==='Paid'?'text-green-400':'text-red-500'} font-semibold">${escapeHTML(m.dues)}</span></p>
             <div class="mt-2 text-[11px] md:text-xs text-brand-text-muted flex justify-between">
               <span>Attendance: ${m.attendance || 0}%</span>
               <span>Loyalty: ${loyaltyStars(m.loyalty || 0)}</span>
@@ -470,7 +438,7 @@
   searchEl.addEventListener('input', renderMembers);
   renderMembers();
 
-  // Modal
+  // Member modal
   const modal = document.getElementById('member-modal');
   const mName = document.getElementById('m-name');
   const mRole = document.getElementById('m-role');
@@ -501,13 +469,54 @@
     if(confirm('Remove this member?')){ members = members.filter(m=>m.id!==id); persistMembers(); renderMembers(); showToast('Member removed'); }
   }
   function deleteMember(){ if(!editingId){ showToast('Nothing to delete'); return; } confirmDelete(editingId); closeMemberModal(); }
+
+  // Export CSV — без предпросмотра на iOS
   function exportMembersCSV(){
     const header=['Name','Role','Dues','Attendance','Loyalty','Avatar'];
     const rows=members.map(m=>[m.name,m.role,m.dues,m.attendance,m.loyalty,m.avatar||'']);
     const csv=[header,...rows].map(r=>r.map(v=>`"${String(v).replace(/"/g,'""')}"`).join(',')).join('\n');
-    const blob=new Blob([csv],{type:'text/csv;charset=utf-8;'}); const url=URL.createObjectURL(blob);
-    const a=document.createElement('a'); a.href=url; a.download='members.csv'; document.body.appendChild(a); a.click();
-    document.body.removeChild(a); URL.revokeObjectURL(url); showToast('Exported members.csv');
+
+    const ua = navigator.userAgent || '';
+    const isIOS = /iPad|iPhone|iPod/.test(ua) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+    const blob = new Blob([csv], { type:'text/csv;charset=utf-8;' });
+    const url = URL.createObjectURL(blob);
+
+    if (!isIOS && 'download' in HTMLAnchorElement.prototype) {
+      // Стандартный путь
+      const a=document.createElement('a');
+      a.href=url; a.download='members.csv';
+      document.body.appendChild(a); a.click();
+      setTimeout(()=>{ document.body.removeChild(a); URL.revokeObjectURL(url); }, 0);
+      return;
+    }
+
+    // iOS: открываем временное окно с автокликом по download ссылке — без Quick Look
+    const w = window.open('', '_blank');
+    if (w) {
+      const safeUrl = url; // object URL
+      w.document.open();
+      w.document.write(`
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <body style="background:#121212;color:#E0E0E0;font-family:Inter,system-ui;display:flex;align-items:center;justify-content:center;height:100vh;margin:0;">
+          <a id="dl" href="${safeUrl}" download="members.csv" style="background:#DF9B2D;color:#121212;padding:14px 18px;border-radius:12px;font-weight:800;text-decoration:none">Download members.csv</a>
+          <script>setTimeout(function(){ document.getElementById('dl').click(); }, 30);<\/script>
+        </body>
+      `);
+      w.document.close();
+      // Освобождаем URL чуть позже, когда загрузка инициирована
+      setTimeout(()=>URL.revokeObjectURL(url), 4000);
+      return;
+    }
+
+    // Резерв: навигация текущего окна на Object URL
+    location.href = url;
+    setTimeout(()=>URL.revokeObjectURL(url), 4000);
+  }
+
+  function escapeHTML(s){
+    return String(s ?? '')
+      .replace(/&/g,'&amp;').replace(/</g,'&lt;')
+      .replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');
   }
 
   // Finances
@@ -538,7 +547,7 @@
     list.innerHTML = transactions.map(t=>`
       <div class="flex justify-between items-center bg-brand-gray p-3 rounded-lg border border-brand-gold/20">
         <div>
-          <p class="font-bold text-white">${t.title}</p>
+          <p class="font-bold text-white">${escapeHTML(t.title)}</p>
           <p class="text-xs text-brand-text-muted">${new Date(t.date).toLocaleDateString()}</p>
         </div>
         <div class="flex items-center gap-3">
@@ -579,13 +588,13 @@
   function removeLook(id){ looks = looks.filter(l=>l.id!==id); persistLooks(); renderLooks(); showToast('Look removed'); }
   function renderLooks(){
     const list=document.getElementById('looks-list');
-    if(!looks.length){ list.innerHTML=`<p class="text-sm text-brand-text-muted">No custom looks yet.</p>`; return; }
+    if(!looks.length){ list.innerHTML='<p class="text-sm text-brand-text-muted">No custom looks yet.</p>'; return; }
     list.innerHTML = looks.map(l=>`
       <div class="bg-brand-gray rounded-xl border border-brand-gold/30 p-4">
         <div class="flex justify-between items-start">
           <div>
-            <h4 class="font-cinzel text-lg text-white font-bold">${l.title}</h4>
-            ${l.notes?`<p class="text-sm text-brand-text-muted mt-1">${l.notes}</p>`:''}
+            <h4 class="font-cinzel text-lg text-white font-bold">${escapeHTML(l.title)}</h4>
+            ${l.notes?`<p class="text-sm text-brand-text-muted mt-1">${escapeHTML(l.notes)}</p>`:''}
           </div>
           <button class="text-red-400 hover:underline text-sm" onclick='removeLook("${l.id}")'>Remove</button>
         </div>
@@ -593,7 +602,7 @@
           const c=l.done?.includes(it);
           return `<li class="flex items-center">
             <button class="${c?'text-brand-gold':'text-brand-text-muted'} mr-3" onclick='toggleLookItem("${l.id}", ${JSON.stringify(it)})'>${c?'☑️':'⬜'}</button>
-            <span class="${c?'line-through text-brand-text-muted':''}">${it}</span>
+            <span class="${c?'line-through text-brand-text-muted':''}">${escapeHTML(it)}</span>
           </li>`;
         }).join('')}</ul>`:''}
       </div>
@@ -615,7 +624,7 @@
     showToast('Vendor added');
   }
   function removeVendor(id){ vendors = vendors.filter(v=>v.id!==id); persistVendors(); renderVendors(); showToast('Vendor removed'); }
-  function openVendor(name){ showToast(`Opening ${name}...`); }
+  function openVendor(name){ showToast('Opening ' + name + '...'); }
   function renderVendors(){
     const wrap=document.getElementById('vendors-list');
     let container=document.getElementById('vendors-dynamic');
@@ -624,8 +633,8 @@
       <div class="flex items-center bg-brand-gray p-3 rounded-lg border border-brand-gold/30 space-x-4" data-dynamic="true">
         <div class="w-20 h-20 rounded-lg flex items-center justify-center bg-brand-black/40 text-brand-gold text-2xl">🧵</div>
         <div class="flex-1">
-          <h3 class="font-bold text-white">${v.name}</h3>
-          <p class="text-sm text-brand-text-muted">${v.service}</p>
+          <h3 class="font-bold text-white">${escapeHTML(v.name)}</h3>
+          <p class="text-sm text-brand-text-muted">${escapeHTML(v.service)}</p>
           <div class="flex items-center gap-3 mt-1">
             ${v.link?`<a href="${v.link}" target="_blank" class="text-xs text-brand-gold hover:underline">Open Link ↗</a>`:''}
             <button class="text-xs text-red-400 hover:underline" onclick='removeVendor("${v.id}")'>Remove</button>
@@ -636,6 +645,5 @@
   }
   renderVendors();
 </script>
-
-
-</body></html>
+</body>
+</html>
