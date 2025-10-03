@@ -979,6 +979,7 @@ class _MafiaHarborState extends State<MafiaHarbor> with WidgetsBindingObserver {
     return AnnotatedRegion<SystemUiOverlayStyle>(
       value: SystemUiOverlayStyle.light,
       child: Scaffold(
+
         backgroundColor: Colors.black,
         body: Stack(
           children: [
@@ -1267,8 +1268,10 @@ class _MafiaHelpState extends State<MafiaHelp> with WidgetsBindingObserver {
   }
 }
 
+
+
 class MafiaHelpLite extends StatefulWidget {
-  const MafiaHelpLite({super.key});
+  const MafiaHelpLite({Key? key}) : super(key: key);
 
   @override
   State<MafiaHelpLite> createState() => _MafiaHelpLiteState();
@@ -1278,10 +1281,50 @@ class _MafiaHelpLiteState extends State<MafiaHelpLite> {
   InAppWebViewController? _wvc;
   bool _ld = true;
 
+  Future<void> _tryGoBack() async {
+    final ctrl = _wvc;
+    if (ctrl == null) return;
+    try {
+      final canBack = await ctrl.canGoBack();
+      if (canBack) {
+        await ctrl.goBack();
+      } else {
+        // Нечего делать: истории назад нет — просто игнорируем нажатие
+      }
+    } catch (_) {
+      // безопасно игнорируем возможные ошибки платформы
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.black,
+      appBar: AppBar(
+        backgroundColor: Colors.black,
+        elevation: 0,
+        leadingWidth: 56,
+        leading: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
+          child: InkWell(
+            onTap: _tryGoBack,
+            borderRadius: BorderRadius.circular(12),
+            child: Container(
+              decoration: BoxDecoration(
+                color: Colors.white, // белая кнопка
+                borderRadius: BorderRadius.circular(12),
+              ),
+              alignment: Alignment.center,
+              child: const Icon(
+                Icons.arrow_back_rounded,
+                color: Colors.black, // стрелка контрастная
+              ),
+            ),
+          ),
+        ),
+        // при желании можно добавить заголовок
+        // title: const Text(''),
+      ),
       body: SafeArea(
         child: Stack(
           children: [
@@ -1304,19 +1347,13 @@ class _MafiaHelpLiteState extends State<MafiaHelpLite> {
                 _wvc = controller;
               },
               onLoadStart: (controller, url) {
-                setState(() {
-                  _ld = true;
-                });
+                setState(() => _ld = true);
               },
               onLoadStop: (controller, url) async {
-                setState(() {
-                  _ld = false;
-                });
+                setState(() => _ld = false);
               },
               onLoadError: (controller, url, code, message) {
-                setState(() {
-                  _ld = false;
-                });
+                setState(() => _ld = false);
               },
             ),
             if (_ld)
@@ -1332,6 +1369,7 @@ class _MafiaHelpLiteState extends State<MafiaHelpLite> {
     );
   }
 }
+
 
 // ============================================================================
 // main()
